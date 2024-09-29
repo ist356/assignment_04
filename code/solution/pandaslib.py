@@ -40,7 +40,7 @@ def get_file_extension(file_path : str) -> str:
     '''
     return file_path.split('.')[-1]
 
-def load_file(file_path : str) -> pd.DataFrame:
+def load_file(file_path: str, ext: str) -> pd.DataFrame:
     '''
     Load a file into a pandas dataframe assumed the file type from the extension
     return a pandas dataframe
@@ -48,7 +48,6 @@ def load_file(file_path : str) -> pd.DataFrame:
     - when csv assume first row is header
     - when json assume record-oriented data
     '''
-    ext = get_file_extension(file_path)
     if ext == 'csv':
         return pd.read_csv(file_path, header=0)
     elif ext == 'xlsx':
@@ -75,3 +74,9 @@ if __name__ == '__main__':
     print(f"Float64 Columns: {cols}")
     unique = get_unique_values(df, 'state')
     print(f"Unique States: {unique}")
+
+
+
+
+
+    # solution pandaslib.py

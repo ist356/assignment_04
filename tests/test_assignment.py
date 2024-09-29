@@ -53,9 +53,9 @@ def test_get_file_extension():
     assert get_file_extension('countries.json') == 'json'
 
 def test_load_file():
-    df = load_file('data/grades.csv')
+    df = load_file('data/grades.csv', 'csv')
     assert df.shape == (8, 5)
-    df = load_file('data/grades.xlsx')
+    df = load_file('data/grades.xlsx', 'xlsx')
     assert df.shape == (8, 5)
-    df = load_file('data/grades.json')
+    df = load_file('data/grades.json', 'json')
     assert df.shape == (8, 5)
