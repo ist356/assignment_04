@@ -23,7 +23,7 @@ The each assignment will have a common layout.
 
 Before starting this assignment you must:
 
-Install the assignemnt python requirements:
+Install the assignment python requirements:
 
 1. From VS Code, open a terminal: Menu => Terminal => New Terminal
 2. In the terminal, type and enter: `pip install -r requirements.txt`
