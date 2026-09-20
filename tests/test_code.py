@@ -149,16 +149,23 @@ def test_clean_uses_series_apply_on_a_copy():
 # --- Step 2 -----------------------------------------------------------------------------
 
 
-def test_join_uses_a_left_merge():
-    """Step 2 is one pd.merge, on employee_id, keeping every timesheet row."""
+def test_join_keeps_one_side_with_merge():
+    """Step 2 is one pd.merge, on employee_id, keeping every timesheet row.
+
+    `how="left"` with the timesheet on the left is the natural spelling, but
+    `how="right"` with the frames swapped says the same thing, and either is
+    accepted. What is not accepted is the default (`inner`) or `outer`.
+    """
     merges = [node for node in calls(parse(JOIN)) if call_name(node) == "merge"]
 
     assert merges, f"{JOIN} should combine the frames with pd.merge(...)"
     hows = [keyword_value(node, "how") for node in merges]
-    assert "left" in hows, (
-        f"{JOIN} merges with how={hows} — a timesheet row whose employee_id is not on the "
-        "roster must survive with NaN, and rostered people who did not work must not appear. "
-        "Re-read the four join types in lesson 3-3."
+    assert "left" in hows or "right" in hows, (
+        f"{JOIN} merges with how={hows} (None means the default, inner) — a timesheet row "
+        "whose employee_id is not on the roster must survive with NaN, and rostered people "
+        "who did not work must not appear. That is a one-sided join: how='left' with the "
+        "timesheet as the left frame (or how='right' with the frames swapped). Re-read the "
+        "four join types in lesson 3-3."
     )
     assert not lineage_violations(JOIN), f"{JOIN}: " + "; ".join(lineage_violations(JOIN))
 

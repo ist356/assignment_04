@@ -406,9 +406,12 @@ pd.merge(left_frame, right_frame, on="employee_id", how="left")
 | `"right"` | every row of the right frame, plus matches from the left |
 | `"outer"` | everything from both |
 
-The result is *wider*: every column of both frames. The left frame's columns come
-first, in their original order. Choose `how=` by asking "which rows must survive even
-without a match?" — that side is left, and the answer is `"left"`.
+The result is *wider*: every column of both frames (the left frame's first). Choose
+`how=` by asking "which rows must survive even without a match?" — that side is the one
+to keep. `pd.merge(timesheet, roster, how="left")` and `pd.merge(roster, timesheet,
+how="right")` are the same decision written two ways; the tests accept either. What
+they do not accept is leaving `how=` off: the default is `"inner"`, and it drops rows
+without telling you.
 
 ### 4. How do I check for a missing value?
 

@@ -24,7 +24,7 @@ def assert_lineage(before: pd.DataFrame, after: pd.DataFrame, added: list[str], 
     A pipeline step must return a frame that:
 
     1. has the same number of rows as it was given,
-    2. still has every input column, with every value unchanged, in the same order,
+    2. still has every input column, with every value unchanged (order does not matter),
     3. adds exactly the columns listed in `added` — no more, no fewer,
     4. did not modify the frame it was given (the caller still holds the original).
 
@@ -46,10 +46,6 @@ def assert_lineage(before: pd.DataFrame, after: pd.DataFrame, added: list[str], 
         f"{step} changed the values in input column(s) {changed}. Clean into a NEW "
         "column; the raw value stays where it was."
     )
-    assert list(after.columns[: len(before.columns)]) == list(before.columns), (
-        f"{step} should keep the input columns first, in their original order"
-    )
-
     new = [c for c in after.columns if c not in before.columns]
     assert sorted(new) == sorted(added), (
         f"{step} should add exactly {sorted(added)}; it added {sorted(new)}"
