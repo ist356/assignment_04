@@ -1,0 +1,13 @@
+employee_id,first_name,last_name,department,hourly_rate
+E001,Maya,Okafor,Barista,$18.50
+E002,Liam,Chen,Barista,17.75
+E003,Sofia,Reyes,Kitchen,$19.00
+E004,Noah,Patel,Kitchen,$20.25
+E005,Ava,Nguyen,Register,$16.50
+E006,Ethan,Brooks,Barista,18.00
+E007,Isabella,Rossi,Kitchen,$21.00
+E008,Jackson,Lee,Register,$16.50
+E009,Amara,Diallo,Barista,$18.50
+E010,Lucas,Kim,Kitchen,19.50
+E011,Zoe,Martin,Register,$17.00
+E012,Owen,Fischer,Barista,$17.50
