@@ -8,7 +8,7 @@ person, with an hourly rate typed as `"$18.50"` or `"17.75"`. Neither file can p
 a paycheck on its own. She copies both into a spreadsheet, cleans the hours by hand,
 looks up each rate, multiplies, and uploads the result to the online payroll provider.
 It takes an afternoon, and last month nobody could explain a paycheck because the raw
-hours had been overwritten by the cleaned ones.
+hours had been overwritten by the cleaned ones. Data Lineage!!!
 
 You're going to replace the afternoon with a web page. Upload the timesheet, read the
 totals, download the provider's file. Behind the page is an **ETL pipeline** in pandas —
