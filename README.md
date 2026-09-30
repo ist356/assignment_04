@@ -530,9 +530,9 @@ If your latest change isn't there, it isn't pushed — and GraderThan won't see 
 
 ### 13. How do I submit for grading — and review my feedback — with GraderThan?
 
-GraderThan runs the autograder (unit, pipeline & app, and structure tests) and an AI
-reviewer (code style, reflection) against your fork, then gives you a score and
-per-criterion feedback.
+GraderThan runs the autograder (unit, pipeline & app, and structure tests), the code
+style checks ([Reference #14](#14-how-do-i-check-my-code-style)) and an AI reviewer
+(reflection) against your fork, then gives you a score and per-criterion feedback.
 
 **Submit:**
 
@@ -549,8 +549,30 @@ per-criterion feedback.
 
 **Review your feedback:** scroll to **"Your submissions"** and click one. `AUTOMATED`
 criteria show the raw test output (e.g. `22/22 tests passed`) with the names of any
-failing tests; `AI-JUDGED` criteria show a written paragraph and a **"How to improve"**
-tip.
+failing tests; the code style criterion shows each of its four checks as met or
+missed, with the file and line; `AI-JUDGED` criteria show a written paragraph and a
+**"How to improve"** tip.
+
+### 14. How do I check my code style?
+
+The **Code style & readability** point is four checks on everything in `code/`, and
+**all four** must pass:
+
+| check | how to see it yourself |
+| --- | --- |
+| no `# TODO` comments left | search `code/` for `TODO` — the starter has one in every function you write; delete each once it's done |
+| no leftover `pass` stubs | every `pass` the starter left where a body goes is replaced by your code |
+| a docstring on every function | the starter's functions already have one; keep them, and give any helper you add its own |
+| no lint errors | run `ruff check` in a terminal at the repository root — **no output means it passes** |
+
+`ruff check` uses this repository's `ruff.toml`, which holds exactly the rules the
+grader uses (pycodestyle + pyflakes, lines of at most 88 characters), so what you see is
+what is graded. The Ruff extension also underlines the same problems in the editor, and
+`ruff check --fix` repairs some of them for you.
+
+On an untouched checkout, `ruff check` already reports a few unused imports in
+`compute.py`. They're the functions you're about to write calls to — they go away as
+Step 6 gets done.
 
 ---
 ## The Assignment — what to actually do
@@ -594,7 +616,7 @@ GraderThan scores this assignment out of **10 points** (see `rubric.json`):
 | **Unit Tests** — `test_unit.py` (the four element functions) | 2 | automated tests |
 | **Pipeline & App Tests** — `test_pipeline.py` (lineage on every step, the merge, the whole pipeline, the page) | 3 | automated tests |
 | **Code Structure Tests** — `test_code.py` (apply, merge, the lineage rule, nothing out of scope) | 2 | automated tests |
-| Code style & readability | 1 | AI reviewer |
+| **Code style & readability** — no `# TODO`s, no leftover `pass`, a docstring on every function, `ruff check` clean ([Reference #14](#14-how-do-i-check-my-code-style)) | 1 | automated style checks |
 | Reflection quality | 2 | AI reviewer |
 
 **Only files in the `code/` folder are graded.** Commit, push, and submit

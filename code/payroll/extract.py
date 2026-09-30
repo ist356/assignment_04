@@ -96,7 +96,8 @@ def generate_timesheet(seed: int, payroll_date: str = "2026-10-23") -> pd.DataFr
         for eid in worked
     ]
     if rng.random() < 0.5:
-        rows.append({"payroll_date": payroll_date, "employee_id": f"E{rng.randint(90, 99)}",
+        rows.append({"payroll_date": payroll_date,
+                     "employee_id": f"E{rng.randint(90, 99)}",
                      "hours": _format_hours(rng, "h_m")})
     return pd.DataFrame(rows, dtype=str)
 
